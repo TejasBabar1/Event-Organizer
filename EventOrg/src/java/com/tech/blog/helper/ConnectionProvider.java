@@ -14,7 +14,7 @@ public class ConnectionProvider {
             Class.forName("com.mysql.jdbc.Driver");
             
             // create connection
-            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/techblog","root","Tejas");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/EventDB","root","Tejas");
             
             }
             
