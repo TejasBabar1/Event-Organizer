@@ -1,0 +1,59 @@
+body {
+    background: #fff;
+    font-family: 'PT Sans', sans-serif;
+}
+
+h2 {
+    padding-top: 1.5rem;
+}
+
+a {
+    color: #333;
+}
+ 
+a:hover {
+    color: #da5767;
+    text-decoration: none;
+}
+
+.card {
+    border: 2px solid #d3d3d4;
+    top: 2%;
+}
+
+.form-control {
+    background-color: #f8f9fa;
+    padding: 20px;
+    padding: 25px 10px;
+    margin-bottom: 1.3rem;
+}
+
+.form-control:focus {
+
+    color: #000000;
+    background-color: #ffffff;
+    border: 3px solid #da5767;
+    outline: 0;
+    box-shadow: none;
+
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    background: #FF0000;
+    border: 2px solid #da5767;
+}
+
+.btn-primary:hover {
+    
+    background-color: #df8c96;
+    border-color: #df8c96;
+    transition: .3s;
+
+}
+
+.postEvent {
+    width: 100%;
+    padding: 1rem;
+    margin: 0 auto;
+}

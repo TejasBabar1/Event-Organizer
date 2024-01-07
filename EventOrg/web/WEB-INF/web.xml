@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <welcome-file-list>
+        <welcome-file>land/index.html</welcome-file>
+        <welcome-file>default.html</welcome-file>
+    </welcome-file-list>
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.tech.blog.servlets.RegisterServlet</servlet-class>
@@ -24,6 +28,26 @@
         <servlet-name>LikeServlet</servlet-name>
         <servlet-class>com.tech.blog.servlets.LikeServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UserRegister</servlet-name>
+        <servlet-class>com.event.servlet.UserRegister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserLogin</servlet-name>
+        <servlet-class>com.event.servlet.UserLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddInterests</servlet-name>
+        <servlet-class>com.event.servlet.AddInterests</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PostEvent</servlet-name>
+        <servlet-class>com.event.servlet.PostEvent</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Recommendation</servlet-name>
+        <servlet-class>com.event.servlet.Recommendation</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -47,6 +71,26 @@
     <servlet-mapping>
         <servlet-name>LikeServlet</servlet-name>
         <url-pattern>/LikeServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserRegister</servlet-name>
+        <url-pattern>/UserRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserLogin</servlet-name>
+        <url-pattern>/UserLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddInterests</servlet-name>
+        <url-pattern>/AddInterests</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PostEvent</servlet-name>
+        <url-pattern>/PostEvent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Recommendation</servlet-name>
+        <url-pattern>/Recommendation</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

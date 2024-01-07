@@ -13,109 +13,159 @@ public class EventDao {
         this.con = con;
     }
     
-    public boolean saveEvent(Event p){
-        boolean f=false;
-        
+    
+    public boolean saveEvent(Event event) {
+        boolean result = false;
         try {
-            String q = "INSERT INTO Event(event_name, event_date, location, time, speaker, "
-                    + "registration_start_date, registration_end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            String sql = "INSERT INTO Event (event_name, event_date, location, time, speaker, registration_start_date, registration_end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setString(1, event.getEvent_name());
+                preparedStatement.setString(2, event.getEvent_date());
+                preparedStatement.setString(3, event.getLocation());
+                preparedStatement.setString(4, event.getTime());
+                preparedStatement.setString(5, event.getSpeaker());
+                preparedStatement.setString(6, event.getRegistration_start_date());
+                preparedStatement.setString(7, event.getRegistration_end_date());
+                preparedStatement.setString(8, event.getDescription());
 
-            PreparedStatement pstmt = con.prepareStatement(q);
-            pstmt.setString(1, p.getEvent_name());
-            pstmt.setDate(2, java.sql.Date.valueOf(p.getEvent_date()));
-            pstmt.setString(3, p.getLocation());
-            pstmt.setTime(4, java.sql.Time.valueOf(p.getTime()));
-            pstmt.setString(5, p.getSpeaker());
-            pstmt.setDate(6, java.sql.Date.valueOf(p.getRegistration_start_date()));
-            pstmt.setDate(7, java.sql.Date.valueOf(p.getRegistration_end_date()));
-            pstmt.setString(8, p.getDescription());
-
-            // Execute the SQL statement
-            int rowsAffected = pstmt.executeUpdate();
-
-            f=true;
-            
-            
-        } catch (Exception e) {
+                int rowsAffected = preparedStatement.executeUpdate();
+                result = rowsAffected > 0;
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        
-        
-        return f;
-                
+        return result;
     }
-    
-    public List<Event> getAllEvent() {
-        List<Event> eventList = new ArrayList<>();
+
+     public List<Event> getAllEvent() {
+        List<Event> events = new ArrayList<>();
 
         try {
-            String q = "SELECT * FROM Event";
-            PreparedStatement pstmt = con.prepareStatement(q);
+            String sql = "SELECT * FROM Event";
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql);
+                 ResultSet resultSet = preparedStatement.executeQuery()) {
 
-            ResultSet rs = pstmt.executeQuery();
-
-            while (rs.next()) {
-                Event event = new Event();
-                event.setId(rs.getInt("id"));
-                event.setEvent_name(rs.getString("event_name"));
-                event.setEvent_date(rs.getString("event_date"));
-                event.setLocation(rs.getString("location"));
-                event.setTime(rs.getString("time"));
-                event.setSpeaker(rs.getString("speaker"));
-                event.setRegistration_start_date(rs.getString("registration_start_date"));
-                event.setRegistration_end_date(rs.getString("registration_end_date"));
-                event.setDescription(rs.getString("description"));
-
-                eventList.add(event);
+                while (resultSet.next()) {
+                    Event event = extractEventFromResultSet(resultSet);
+                    events.add(event);
+                }
             }
-
-            // Close resources
-            rs.close();
-            pstmt.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        return eventList;
+        return events;
     }
 
+    private Event extractEventFromResultSet(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt("id");
+        String eventName = resultSet.getString("event_name");
+        String eventDate = resultSet.getString("event_date");
+        String location = resultSet.getString("location");
+        String time = resultSet.getString("time");
+        String speaker = resultSet.getString("speaker");
+        String registrationStartDate = resultSet.getString("registration_start_date");
+        String registrationEndDate = resultSet.getString("registration_end_date");
+        String description = resultSet.getString("description");
+
+        return new Event(id, eventName, eventDate, location, time, speaker, registrationStartDate, registrationEndDate, description);
     
-        
+}
     
-    
+
     public Event getEventByEventId(int id) {
         Event event = null;
 
         try {
-            String q = "SELECT * FROM Event WHERE id = ?";
-            PreparedStatement pstmt = con.prepareStatement(q);
-            pstmt.setInt(1, id);
+            String sql = "SELECT * FROM Event WHERE id = ?";
+            try (PreparedStatement preparedStatement = con.prepareStatement(sql)) {
+                preparedStatement.setInt(1, id);
 
-            ResultSet rs = pstmt.executeQuery();
-
-            if (rs.next()) {
-                event = new Event();
-                event.setId(rs.getInt("id"));
-                event.setEvent_name(rs.getString("event_name"));
-                event.setEvent_date(rs.getString("event_date"));
-                event.setLocation(rs.getString("location"));
-                event.setTime(rs.getString("time"));
-                event.setSpeaker(rs.getString("speaker"));
-                event.setRegistration_start_date(rs.getString("registration_start_date"));
-                event.setRegistration_end_date(rs.getString("registration_end_date"));
-                event.setDescription(rs.getString("description"));
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        event = extractEventFromResultSet(resultSet);
+                    }
+                }
             }
-
-            // Close resources
-            rs.close();
-            pstmt.close();
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
         return event;
     }
+    
+    public int saveEventAndGetId(Event event) {
+    int generatedId = -1; // Initialize with a default value
+
+    try {
+        String sql = "INSERT INTO Event (event_name, event_date, location, time, speaker, registration_start_date, registration_end_date, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+            preparedStatement.setString(1, event.getEvent_name());
+            preparedStatement.setString(2, event.getEvent_date());
+            preparedStatement.setString(3, event.getLocation());
+            preparedStatement.setString(4, event.getTime());
+            preparedStatement.setString(5, event.getSpeaker());
+            preparedStatement.setString(6, event.getRegistration_start_date());
+            preparedStatement.setString(7, event.getRegistration_end_date());
+            preparedStatement.setString(8, event.getDescription());
+
+            int rowsAffected = preparedStatement.executeUpdate();
+            if (rowsAffected > 0) {
+                try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        generatedId = generatedKeys.getInt(1);
+                    }
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return generatedId;
+    }
+    
+    
+    public List<Event> getEventsByEventIds(List<Integer> eventIds) {
+    List<Event> events = new ArrayList<>();
+
+    if (eventIds.isEmpty()) {
+        return events; // Return an empty list if the input list is empty
+    }
+
+    try {
+        StringBuilder sqlBuilder = new StringBuilder("SELECT * FROM Event WHERE id IN (");
+
+        // Append placeholders for event IDs
+        for (int i = 0; i < eventIds.size(); i++) {
+            sqlBuilder.append("?");
+            if (i < eventIds.size() - 1) {
+                sqlBuilder.append(", ");
+            }
+        }
+
+        sqlBuilder.append(")");
+
+        try (PreparedStatement preparedStatement = con.prepareStatement(sqlBuilder.toString())) {
+            // Set event IDs as parameters in the prepared statement
+            for (int i = 0; i < eventIds.size(); i++) {
+                preparedStatement.setInt(i + 1, eventIds.get(i));
+            }
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Event event = extractEventFromResultSet(resultSet);
+                    events.add(event);
+                }
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return events;
+}
+
+
 }
 

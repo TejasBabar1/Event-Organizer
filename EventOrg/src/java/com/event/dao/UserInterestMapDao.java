@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterestMapDao {
-    
+
     private Connection con;
 
     public UserInterestMapDao(Connection con) {
@@ -44,7 +44,7 @@ public class UserInterestMapDao {
 
         return success;
     }
-    
+
     public List<UserInterestMap> getAllUserInterestMap() {
         List<UserInterestMap> userInterestMapList = new ArrayList<>();
 
@@ -132,5 +132,31 @@ public class UserInterestMapDao {
 
         return userInterestMapList;
     }
-}
 
+    public List<Integer> getInterestByUserId(int userId) {
+        List<Integer> interests = new ArrayList<>();
+
+        try {
+            String query = "SELECT interest_id FROM UserInterestMap WHERE user_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, userId);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            while (rs.next()) {
+                int interestId = rs.getInt("interest_id");
+                interests.add(interestId);
+            }
+
+            // Close resources
+            rs.close();
+            pstmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return interests;
+    }
+
+}

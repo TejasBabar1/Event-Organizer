@@ -100,5 +100,30 @@ public class InterestDao {
 
         return interest;
     }
+    
+    public int getIdByInterest(String interestName) {
+        int interestId = -1;
+
+        try {
+            String query = "SELECT id FROM Interest WHERE interest_name = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setString(1, interestName);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                interestId = rs.getInt("id");
+            }
+
+            // Close resources
+            rs.close();
+            pstmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return interestId;
+    }
 }
 

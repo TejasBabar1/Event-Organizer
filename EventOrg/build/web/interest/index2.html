@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Styled Button Clicks</title>
+        <style>
+            body {
+                margin: 0 auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .interestBtn {
+                -webkit-border-radius: 28;
+                -moz-border-radius: 28;
+                border-radius: 28px;
+                font-family: Arial;
+                color: #0d0c0d;
+                font-size: 15px;
+                background: #e5e7e8;
+                padding: 10px 20px 10px 20px;
+                text-decoration: none;
+                border: none;
+            }
+
+            .interestBtn.selected {
+                background: #3cb0fd;
+                /* Change the background color for selected buttons */
+                color: #fff;
+                /* Change the text color for selected buttons */
+            }
+
+            .interestBtn:hover {
+                background: #3cb0fd;
+                background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+                background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+                text-decoration: none;
+            }
+
+            .InterestContainer {
+                width: 50vw;
+            }
+
+            .cent {
+                text-align: center;
+            }
+
+            .userInput {
+                margin-left: 25%;
+                height: 30px;
+                width: 400px;
+            }
+
+            .intersets {
+                display: flex;
+                justify-content: center;
+                text-align: center;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="InterestContainer">
+            <div class="cent">
+                <h2>Area(s) Of Interest</h2>
+            </div>
+
+            <div class="intersets">
+                <input type="button" class="interestBtn" value="Artificial Intelligence(AI)">
+                <input type="button" class="interestBtn" value="Deep Learning">
+                <input type="button" class="interestBtn" value="Blockchain">
+                <input type="button" class="interestBtn" value="Data Science">
+                <input type="button" class="interestBtn" value="Machine Learning">
+                <input type="button" class="interestBtn" value="Big Data Analytics">
+                <input type="button" class="interestBtn" value="DSA">
+                <input type="button" class="interestBtn" value="Web">
+                <input type="button" class="interestBtn" value="Cloud">
+                <input type="button" class="interestBtn" value="AR/VR">
+                <input type="button" class="interestBtn" value="Cyber Security">
+                <input type="button" class="interestBtn" value="Quantum Computing">
+                <input type="button" class="interestBtn" value="Robotics">
+                <input type="button" class="interestBtn" value="Internet Of things (IOT)">
+                <input type="button" class="interestBtn" value="Electric Vehicles">
+                <input type="button" class="interestBtn" value="Sports">
+                <input type="button" class="interestBtn" value="Gaming and Entertainment">
+                <input type="button" class="interestBtn" value="Art & Drama">
+                <input type="button" class="interestBtn" value="Social and Networking">
+                <input type="button" class="interestBtn" value="Marketing">
+                <input type="button" class="interestBtn" value="Finance">
+                <input type="button" class="interestBtn" value="UI/UX Design">
+                <input type="button" class="interestBtn" value="Electronics and Embedded Systems">
+                <input type="button" class="interestBtn" value="3D Printing & Manufacturing">
+                <input type="button" class="interestBtn" value="Higher Studies">
+
+
+                <button id="submitInterests" >Explore Events</button>
+
+            </div>
+        </div>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <!-- Include Bootstrap JS -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+        <script>
+            // Declare the array globally
+            const selectedInterests = [];
+            document.addEventListener('DOMContentLoaded', function () {
+                const interestButtons = document.querySelectorAll('.interestBtn');
+                interestButtons.forEach(button => {
+                    button.addEventListener('click', () => {
+                        const value = button.value;
+                        // Toggle the 'selected' class for styling
+                        button.classList.toggle('selected');
+                        // Update the global array
+                        if (button.classList.contains('selected')) {
+                            selectedInterests.push(value);
+                        } else {
+                            const index = selectedInterests.indexOf(value);
+                            if (index !== -1) {
+                                selectedInterests.splice(index, 1);
+                            }
+                        }
+
+                        console.log('Selected interests:', selectedInterests);
+                    });
+                });
+            });
+            
+//            submitting interests
+            $(document).ready(function () {
+                $('#submitInterests').click(function (event) {
+
+
+                    $.ajax({
+                        url: "../AddInterests",
+                        type: 'POST',
+                        contentType: 'application/json',
+                      data: JSON.stringify( selectedInterests),
+                        dataType: 'text', // Expect text response
+                        success: function (data, textStatus, jqXHR) {
+                            console.log(data);
+                            if(data.trim()==="Done"){
+                                window.location = "../userProfile/index.jsp";
+                            }
+                            else{
+                                
+                            }
+                        },
+                        error: function (jqXHR, textStatus, errorThrown) {
+                            console.log(jqXHR);
+                            swal("SomeThing went Wrong .. Please Try Again !");
+                        }
+                    });
+                });
+            });
+
+        </script>
+
+    </body>
+
+</html>
