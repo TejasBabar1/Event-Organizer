@@ -53,11 +53,11 @@ $(document).ready(function () {
                 if (data.trim() === 'Done') {
                     swal({
                         title: "Register Successfully !!",
-                        text: "Redirecting to login Page",
+                        text: "select area of interests",
                         icon: "success",
                         button: "OK"
                     }).then((value) => {
-                        window.location = "../interest/index.html";
+                        window.location = "../interest/index.jsp";
                     });
                 } else {
                     swal(data);

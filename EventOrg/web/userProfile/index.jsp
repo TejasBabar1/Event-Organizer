@@ -36,7 +36,9 @@
             <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
                 <div class="container">
                     <div class="navbar-brand-wrapper d-flex w-100">
-                        <img src="images/Group2.svg" alt="">
+                        <!--<img src="images/Group2.svg" alt="">-->
+                        <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
+
                         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="mdi mdi-menu navbar-toggler-icon"></span>
                         </button> 
@@ -45,7 +47,9 @@
                         <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
                             <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
                                 <div class="navbar-collapse-logo">
-                                    <img src="images/Group2.svg" alt="">
+                                    <!--<img src="images/Group2.svg" alt="">-->
+                                    <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
+
                                 </div>
                                 <button class="navbar-toggler close-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
@@ -74,7 +78,7 @@
                             </li>
 
                             <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                                <a href="logout-page"><button class="btn btn-danger">Log Out →</button></a>
+                                <a href="../login/index.html"><button class="btn btn-danger">Log Out →</button></a>
                             </li>
                         </ul>
                     </div>
@@ -158,7 +162,11 @@
                                 </div>
 
                                 <div class="description">
-                                    <%= e.getDescription() %>
+                                    <%
+                                           String desc = e.getDescription();
+                                           int len = Math.min(desc.length(),500);
+                                    %>
+                                    <%= desc.substring(0,len)+"..." %>
                                 </div>
                             </div>
 
@@ -176,188 +184,194 @@
 
                     </div>
                 </section>
-                    <!-- new code ends -->
+                <!-- new code ends -->
             </div>  
 
 
 
 
-        <br>
-        <!-- upcoming events  -->
-        <section class="case-studies" id="case-studies-section">
-            <div class="row grid-margin">
-                <div class="col-12 text-center pb-5 pt-4">
-                    <h2>Upcoming Events</h2>
-                    <h6 class="section-subtitle text-muted">Register for event to participate</h6>
-                </div>
+            <br>
+            <!-- upcoming events  -->
+            <section class="case-studies" id="case-studies-section">
+                <div class="row grid-margin">
+                    <div class="col-12 text-center pb-5 pt-4">
+                        <h2>Upcoming Events</h2>
+                        <h6 class="section-subtitle text-muted">Register for event to participate</h6>
+                    </div>
 
 
-                <div class="card-container">
+                    <div class="card-container">
 
-                    <% 
+                        <% 
     
-                        EventDao d=new EventDao(ConnectionProvider.getConnection());
-                        List<Event> events=d.getAllEvent();
+                            EventDao d=new EventDao(ConnectionProvider.getConnection());
+                            List<Event> events=d.getAllEvent();
                     
     
                     
     
-                        if(events.size()==0){
-                            out.println("<h3 class='display-3 text-center'>No post in This Category</h3>");
+                            if(events.size()==0){
+                                out.println("<h3 class='display-3 text-center'>No post in This Category</h3>");
                         
-                        }
+                            }
     
-                        for(Event e : events){
+                            for(Event e : events){
                         
                             
-                    %>
-                    <!-- new code starts -->
+                        %>
+                        <!-- new code starts -->
 
-                    <div class="eventCard">
-                        <div class="tour-info">
-                            <div class="tour-details">
-                                <!-- title , description, date, venue, time, speaker, price -->
-                                <h4 class="tour-price"><%= e.getEvent_name() %></h4>
-                                <h4 class="tour-name"><%= e.getEvent_date() %></h4>
-                                <h4 class="tour-name"><%= e.getSpeaker() %></h4>
-                                <h4 class="tour-name"><%= e.getLocation() %></h4>
-                                <h4 class="tour-name"><%= e.getTime() %></h4>
+                        <div class="eventCard">
+                            <div class="tour-info">
+                                <div class="tour-details">
+                                    <!-- title , description, date, venue, time, speaker, price -->
+                                    <h4 class="tour-price"><%= e.getEvent_name() %></h4>
+                                    <h4 class="tour-name"><%= e.getEvent_date() %></h4>
+                                    <h4 class="tour-name"><%= e.getSpeaker() %></h4>
+                                    <h4 class="tour-name"><%= e.getLocation() %></h4>
+                                    <h4 class="tour-name"><%= e.getTime() %></h4>
+                                </div>
+
+                                <div class="description">
+                                    <%
+                                           String desc = e.getDescription();
+                                           int len = Math.min(desc.length(),500);
+                                    %>
+                                    <%= desc.substring(0,len)+"..." %>
+                                </div>
                             </div>
 
-                            <div class="description">
-                                <%= e.getDescription() %>
-                            </div>
+                            <button class="btn-red">
+                                Register
+                            </button>
                         </div>
 
-                        <button class="btn-red">
-                            Register
-                        </button>
+                        <!-- new code starts -->
+
+                        <!--                    
+                        
+                        
+                        <% } %>
+    
+                            </div>
+                        <!-- new code ends -->
                     </div>
+            </section>  
 
-                    <!-- new code starts -->
-
-                    <!--                    
-                    
-                    
-                    <% } %>
-
-                        </div>
-                    <!-- new code ends -->
-                </div>
-        </section>  
-
-        <!-- info of clubs     -->
-        <section class="customer-feedback" id="feedback-section">
-            <div class="row">
-                <div class="col-12 text-center pb-5">
-                    <h2>Explore Our Clubs.</h2>
-                    <h6 class="section-subtitle text-muted m-0">Check out your interested clubs available.</h6>
-                </div>
-                <div class="owl-carousel owl-theme grid-margin">
-                    <div class="card customer-cards">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img src="images/it.jpg" width="89" height="89" alt="" class="img-customer">
-                                <p class="m-0 py-3 text-muted">ITSA is a Club managed by students of Information Technology Department.</p>
-                                <div class="content-divider m-auto"></div>
-                                <h6 class="card-title pt-3">ITSA</h6>
-                                <h6 class="customer-designation text-muted m-0">An IT students organization</h6>
+            <!-- info of clubs     -->
+            <section class="customer-feedback" id="feedback-section">
+                <div class="row">
+                    <div class="col-12 text-center pb-5">
+                        <h2>Explore Our Clubs.</h2>
+                        <h6 class="section-subtitle text-muted m-0">Check out your interested clubs available.</h6>
+                    </div>
+                    <div class="owl-carousel owl-theme grid-margin">
+                        <div class="card customer-cards">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="images/it.jpg" width="89" height="89" alt="" class="img-customer">
+                                    <p class="m-0 py-3 text-muted">ITSA is a Club managed by students of Information Technology Department.</p>
+                                    <div class="content-divider m-auto"></div>
+                                    <h6 class="card-title pt-3">ITSA</h6>
+                                    <h6 class="customer-designation text-muted m-0">An IT students organization</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card customer-cards">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img src="images/cs.jpg" width="89" height="89" alt="" class="img-customer">
-                                <p class="m-0 py-3 text-muted">ACES, a Organization of Computer Science students.</p>
-                                <div class="content-divider m-auto"></div>
-                                <h6 class="card-title pt-3">ACES</h6>
-                                <h6 class="customer-designation text-muted m-0">Association of Computer students</h6>
+                        <div class="card customer-cards">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="images/cs.jpg" width="89" height="89" alt="" class="img-customer">
+                                    <p class="m-0 py-3 text-muted">ACES, a Organization of Computer Science students.</p>
+                                    <div class="content-divider m-auto"></div>
+                                    <h6 class="card-title pt-3">ACES</h6>
+                                    <h6 class="customer-designation text-muted m-0">Association of Computer students</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card customer-cards">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img src="images/mech.jpg" width="89" height="89" alt="" class="img-customer">
-                                <p class="m-0 py-3 text-muted">An Organization of Mechanical Department Students</p>
-                                <div class="content-divider m-auto"></div>
-                                <h6 class="card-title pt-3">MECHA</h6>
-                                <h6 class="customer-designation text-muted m-0">Mechanical Association</h6>
+                        <div class="card customer-cards">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="images/mech.jpg" width="89" height="89" alt="" class="img-customer">
+                                    <p class="m-0 py-3 text-muted">An Organization of Mechanical Department Students</p>
+                                    <div class="content-divider m-auto"></div>
+                                    <h6 class="card-title pt-3">MECHA</h6>
+                                    <h6 class="customer-designation text-muted m-0">Mechanical Association</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card customer-cards">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img src="images/electrical.jpg" width="89" height="89" alt="" class="img-customer">
-                                <p class="m-0 py-3 text-muted">EESA</p>
-                                <div class="content-divider m-auto"></div>
-                                <h6 class="card-title pt-3">An Organization of Electrical Students</h6>
-                                <h6 class="customer-designation text-muted m-0">Electrical Engineering Students Association</h6>
+                        <div class="card customer-cards">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="images/electrical.jpg" width="89" height="89" alt="" class="img-customer">
+                                    <p class="m-0 py-3 text-muted">EESA</p>
+                                    <div class="content-divider m-auto"></div>
+                                    <h6 class="card-title pt-3">An Organization of Electrical Students</h6>
+                                    <h6 class="customer-designation text-muted m-0">Electrical Engineering Students Association</h6>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card customer-cards">
-                        <div class="card-body">
-                            <div class="text-center">
-                                <img src="images/entc.jpg" width="89" height="89" alt="" class="img-customer">
-                                <p class="m-0 py-3 text-muted">ETSA, a helpful Organization managed by ENTC Students.</p>
-                                <div class="content-divider m-auto"></div>
-                                <h6 class="card-title pt-3">ETSA</h6>
-                                <h6 class="customer-designation text-muted m-0">ENTC Students Association</h6>
+                        <div class="card customer-cards">
+                            <div class="card-body">
+                                <div class="text-center">
+                                    <img src="images/entc.jpg" width="89" height="89" alt="" class="img-customer">
+                                    <p class="m-0 py-3 text-muted">ETSA, a helpful Organization managed by ENTC Students.</p>
+                                    <div class="content-divider m-auto"></div>
+                                    <h6 class="card-title pt-3">ETSA</h6>
+                                    <h6 class="customer-designation text-muted m-0">ENTC Students Association</h6>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section class="contact-details" id="contact-details-section">
-            <h2 class="text-center py-4">Contact Us</h2>
-            <div class="row text-center text-md-left">
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <img src="images/Group2.svg" alt="" class="pb-2">
-                    <div class="pt-2">
-                        <p class="text-muted m-0">contact@eventorganizer.com</p>
-                        <p class="text-muted m-0">906-179-8309</p>
-                    </div>         
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <h5 class="pb-2">Get in Touch</h5>
-                    <p class="text-muted">Don’t miss any updates of our new templates and extensions.!</p>
+            <section class="contact-details" id="contact-details-section">
+                <h2 class="text-center py-4">Contact Us</h2>
+                <div class="row text-center text-md-left">
+                    <div class="col-12 col-md-6 col-lg-3 grid-margin">
+                        <!--<img src="images/Group2.svg" alt="" class="pb-2">-->
+                        <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
 
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <h5 class="pb-2">Our Guidelines</h5>
-                    <a href="#"><p class="m-0 pb-2">Terms</p></a>   
-                    <a href="#" ><p class="m-0 pt-1 pb-2">Privacy policy</p></a> 
-                    <a href="#"><p class="m-0 pt-1 pb-2">Cookie Policy</p></a> 
-                    <a href="#"><p class="m-0 pt-1">Discover</p></a> 
-                </div>
-                <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                    <h5 class="pb-2">Our address</h5>
-                    <p class="text-muted">Parvati Darshar Road<br>Swargate, Pune</p>
-                    <div class="d-flex justify-content-center justify-content-md-start">
-                        <a href="#"><span class="mdi mdi-facebook"></span></a>
-                        <a href="#"><span class="mdi mdi-twitter"></span></a>
-                        <a href="#"><span class="mdi mdi-instagram"></span></a>
-                        <a href="#"><span class="mdi mdi-linkedin"></span></a>
+                        <div class="pt-2">
+                            <p class="text-muted m-0">contact@eventminds.com</p>
+                            <p class="text-muted m-0">906-179-8309</p>
+                        </div>         
                     </div>
-                </div>
-            </div>  
-        </section>
+                    <div class="col-12 col-md-6 col-lg-3 grid-margin">
+                        <h5 class="pb-2">Get in Touch</h5>
+                        <p class="text-muted">Don’t miss any updates of our new templates and extensions.!</p>
 
-        <!-- footer  -->
-        <footer class="border-top">
-            <p class="text-center text-muted pt-4">Copyright © 2023<a href="#" class="px-1">Event-Organizer</a>All rights reserved.</p>
-        </footer>
-    </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 grid-margin">
+                        <h5 class="pb-2">Our Guidelines</h5>
+                        <a href="#"><p class="m-0 pb-2">Terms</p></a>   
+                        <a href="#" ><p class="m-0 pt-1 pb-2">Privacy policy</p></a> 
+                        <a href="#"><p class="m-0 pt-1 pb-2">Cookie Policy</p></a> 
+                        <a href="#"><p class="m-0 pt-1">Discover</p></a> 
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-3 grid-margin">
+                        <h5 class="pb-2">Our address</h5>
+                        <p class="text-muted">Parvati Darshar Road<br>Swargate, Pune</p>
+                        <div class="d-flex justify-content-center justify-content-md-start">
+                            <a href="#"><span class="mdi mdi-facebook"></span></a>
+                            <a href="#"><span class="mdi mdi-twitter"></span></a>
+                            <a href="#"><span class="mdi mdi-instagram"></span></a>
+                            <a href="#"><span class="mdi mdi-linkedin"></span></a>
+                        </div>
+                    </div>
+                </div>  
+            </section>
 
-<script src="vendors/jquery/jquery.min.js"></script>
-<script src="vendors/bootstrap/bootstrap.min.js"></script>
-<script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
-<script src="vendors/aos/js/aos.js"></script>
-<script src="js/landingpage.js"></script>
-</body>
+            <!-- footer  -->
+            <footer class="border-top">
+                <p class="text-center text-muted pt-4">Copyright © 2023<a href="#" class="px-1">EventMinds</a>All rights reserved.</p>
+            </footer>
+        </div>
+
+        <script src="vendors/jquery/jquery.min.js"></script>
+        <script src="vendors/bootstrap/bootstrap.min.js"></script>
+        <script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
+        <script src="vendors/aos/js/aos.js"></script>
+        <script src="js/landingpage.js"></script>
+    </body>
 </html>

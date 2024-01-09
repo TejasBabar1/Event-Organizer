@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (data.trim() === 'Done') {
                     swal({
                         title: "Event Posted Successfully !!",
-                        text: "Redirecting to admin Page",
+                        text: "Thank You.",
                         icon: "success",
                         button: "OK"
                     }).then((value) => {
@@ -104,4 +104,11 @@ function callForRecommendations(interest)
             console.log(jqXHR);
         }
     });
+}
+
+function logout() {
+    // Perform any additional logout actions if needed
+
+    // Redirect to the specified URL
+    window.location.href = '../land/index.html';
 }

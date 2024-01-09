@@ -33,6 +33,17 @@
         <link rel="stylesheet" href="cssForCard.css">
 
         <link rel="stylesheet" href="postEvent.css">
+
+<!--        <style>
+            .logo-pvg{
+                font-size: 2rem;
+                color: #FF0000;
+                position: relative;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                top: 6px;
+            }
+        </style>-->
     </head>
 
     <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
@@ -40,7 +51,9 @@
             <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
                 <div class="container">
                     <div class="navbar-brand-wrapper d-flex w-100">
-                        <img src="images/Group2.svg" alt="">
+                        <!--                        <img src="images/Group2.svg" alt="">-->
+                        <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
+
                         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="mdi mdi-menu navbar-toggler-icon"></span>
                         </button> 
@@ -49,7 +62,9 @@
                         <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
                             <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
                                 <div class="navbar-collapse-logo">
-                                    <img src="images/Group2.svg" alt="">
+                                    <!--<img src="images/Group2.svg" alt="">-->
+                                    <img src="../land/images/brand-log.png" width="150px" class="pb-2">
+
                                 </div>
                                 <button class="navbar-toggler close-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                                     <span class="mdi mdi-close navbar-toggler-icon pl-5"></span>
@@ -75,7 +90,9 @@
                             </li>
 
                             <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                                <a href="logout-page"><button class="btn btn-danger">Log Out →</button></a>
+
+                                <!--<button class="btn btn-danger" onclick="logout()">Log Out →</button>-->
+                                <a href="../login/index.html"><button class="btn btn-danger">Log Out →</button> </a>
                             </li>
                         </ul>
                     </div>
@@ -139,7 +156,11 @@
                                     </div>
 
                                     <div class="description">
-                                        <%= e.getDescription() %>
+                                        <%
+                                           String desc = e.getDescription();
+                                           int len = Math.min(desc.length(),500);
+                                        %>
+                                        <%= desc.substring(0,len)+"..." %>
                                     </div>
                                 </div>
 
@@ -233,9 +254,10 @@
                     <h2 class="text-center py-4">Contact Us</h2>
                     <div class="row text-center text-md-left">
                         <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                            <img src="images/Group2.svg" alt="" class="pb-2">
+                            <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
+
                             <div class="pt-2">
-                                <p class="text-muted m-0">contact@eventorganizer.com</p>
+                                <p class="text-muted m-0">contact@eventminds.com</p>
                                 <p class="text-muted m-0">906-179-8309</p>
                             </div>         
                         </div>
@@ -253,7 +275,7 @@
                         </div>
                         <div class="col-12 col-md-6 col-lg-3 grid-margin">
                             <h5 class="pb-2">Our address</h5>
-                            <p class="text-muted">Parvati Darshar Road<br>Swargate, Pune</p>
+                            <p class="text-muted">Parvati Darshan Road<br>Swargate, Pune</p>
                             <div class="d-flex justify-content-center justify-content-md-start">
                                 <a href="#"><span class="mdi mdi-facebook"></span></a>
                                 <a href="#"><span class="mdi mdi-twitter"></span></a>
@@ -266,7 +288,7 @@
 
                 <!-- footer  -->
                 <footer class="border-top">
-                    <p class="text-center text-muted pt-4">Copyright © 2023<a href="#" class="px-1">Event-Organizer</a>All rights reserved.</p>
+                    <p class="text-center text-muted pt-4">Copyright © 2023<a href="#" class="px-1">EventMinds</a>All rights reserved.</p>
                 </footer>
             </div> 
         </div>
@@ -275,14 +297,14 @@
         <!-- Include Bootstrap JS -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script><!-- comment -->
-        
+
         <script src="postEvent.js"></script>
         <script src="vendors/jquery/jquery.min.js"></script>
         <script src="vendors/bootstrap/bootstrap.min.js"></script>
         <script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
         <script src="vendors/aos/js/aos.js"></script>
         <script src="js/landingpage.js"></script>
-        
-        
+
+
     </body>
 </html>

@@ -1,3 +1,12 @@
+<%-- 
+    Document   : index
+    Created on : 07-Jan-2024, 1:08:08 PM
+    Author     : tejas
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page import="com.event.entities.User" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -92,7 +101,19 @@
             {
                 margin-left: 30px;
             }
+
+            .logo-pvg
+            {
+                font-size: 2rem;
+                color: #FF0000;
+                position: relative;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                top: 6px;
+            }
         </style>
+
+
     </head>
 
     <body id="body" data-spy="scroll" data-target=".navbar" data-offset="100">
@@ -100,7 +121,9 @@
             <nav class="navbar navbar-expand-lg pl-3 pl-sm-0" id="navbar">
                 <div class="container">
                     <div class="navbar-brand-wrapper d-flex w-100">
-                        <img src="images/Group2.svg" alt="">
+                        <!--                        <img src="images/Group2.svg" alt="">-->
+                        <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
+
                         <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse"
                                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                                 aria-label="Toggle navigation">
@@ -111,7 +134,8 @@
                         <ul class="navbar-nav align-items-lg-center align-items-start ml-auto">
                             <li class="d-flex align-items-center justify-content-between pl-4 pl-lg-0">
                                 <div class="navbar-collapse-logo">
-                                    <img src="images/Group2.svg" alt="">
+                                    <!--<img src="images/Group2.svg" alt="">-->
+                                    <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
                                 </div>
                                 <button class="navbar-toggler close-button" type="button" data-toggle="collapse"
                                         data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -132,13 +156,18 @@
                                 <a class="nav-link" href="#contact-details-section">Contact</a>
                             </li>
 
-                            <li class="nav-item">
-                                <div class="uname">Hello <br>user</div>
+                            <li class="nav-item btn-contact-us" >
+                                <%
+                                    User cur =(User) session.getAttribute("user");
+                                %>
+                                <div class="profile">Hello<br> <%= cur.getName() %> </div> 
                             </li>
 
-                            <li class="nav-item btn-contact-us pl-4 pl-lg-0">
-                                <a href="../login/index.html"><button class="btn btn-info">Log-out</button></a>
-                            </li>
+                            <!--                            <li class="nav-item btn-contact-us pl-4 pl-lg-0">
+                                                            <a href="../login/index.html"><button class="btn btn-info">Log-out</button></a>
+                                                        </li>-->
+
+
                         </ul>
                     </div>
                 </div>
@@ -199,9 +228,11 @@
                     <h2 class="text-center py-4">Contact Us</h2>
                     <div class="row text-center text-md-left">
                         <div class="col-12 col-md-6 col-lg-3 grid-margin">
-                            <img src="images/Group2.svg" alt="" class="pb-2">
+                            <!--<img src="images/Group2.svg" alt="" class="pb-2">-->
+                            <img src="../land/images/brand-log.png" alt="brand" width="150px" class="pb-2">
+
                             <div class="pt-2">
-                                <p class="text-muted m-0">contact@eventorganizer.com</p>
+                                <p class="text-muted m-0">contact@eventminds.com</p>
                                 <p class="text-muted m-0">906-179-8309</p>
                             </div>
                         </div>
@@ -240,7 +271,7 @@
 
                 <footer class="border-top">
                     <p class="text-center text-muted pt-4">Copyright © 2023<a href="https://www.bootstrapdash.com/"
-                                                                              class="px-1">Event-Organizer</a>All rights reserved.</p>
+                                                                              class="px-1">EventMinds</a>All rights reserved.</p>
                 </footer>
                 <!-- Modal for Contact - us Button -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
