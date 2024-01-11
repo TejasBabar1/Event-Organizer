@@ -92,6 +92,9 @@
                 <h6 class="font-weight-normal text-muted pb-3">Paricipate in events and grasp knowledge from professionals.</h6>
                 <div>
                     <button class="btn btn-opacity-light mr-1" id="#features-section">Explore Events... </button>
+                    <a href="PopUp.jsp">
+                        <button class="btn btn-opacity-success ml-1" >Update Interests..</button>
+                    </a>
                 </div>
                 <img src="images/Group171.svg" alt="" class="img-fluid">
             </div>

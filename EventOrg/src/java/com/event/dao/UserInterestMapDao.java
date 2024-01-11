@@ -159,4 +159,32 @@ public class UserInterestMapDao {
         return interests;
     }
 
+    public int deleteUserInterestsByUserId(int userId) {
+        int success = 0;
+
+        try {
+            // SQL query to delete entries for a specific user by user_id
+            String query = "DELETE FROM UserInterestMap WHERE user_id = ?";
+            PreparedStatement pstmt = con.prepareStatement(query);
+            pstmt.setInt(1, userId);
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("User's interests deleted successfully.");
+                success = rowsAffected;
+            } else {
+                System.out.println("No matching user interests found for deletion.");
+            }
+
+            // Close resources
+            pstmt.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return success;
+    }
+
 }

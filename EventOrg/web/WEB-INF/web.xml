@@ -48,6 +48,10 @@
         <servlet-name>Recommendation</servlet-name>
         <servlet-class>com.event.servlet.Recommendation</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProfile</servlet-name>
+        <servlet-class>com.event.servlet.UpdateProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/RegisterServlet</url-pattern>
@@ -91,6 +95,10 @@
     <servlet-mapping>
         <servlet-name>Recommendation</servlet-name>
         <url-pattern>/Recommendation</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfile</servlet-name>
+        <url-pattern>/UpdateProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

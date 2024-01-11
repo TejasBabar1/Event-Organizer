@@ -1,0 +1,176 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 12-Jan-2024, 2:39:13 AM
+    Author     : tejas
+*/
+
+/* Form css */
+.user-input
+{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.user-input:focus
+{
+    border: 2px solid #da5767;
+    outline: none;
+}
+
+
+/* pop up css*/
+body {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.interestBtn {
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    color: #0d0c0d;
+    font-size: 15px;
+    background: #e5e7e8;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    border: none;
+}
+
+.interestBtn.selected {
+    color: #fff;
+
+    background: #3cb0fd;
+    /* Change the background color for selected buttons */
+    /* Change the text color for selected buttons */
+}
+
+.interestBtn:hover {
+    background: #3cb0fd;
+    cursor: pointer;
+    background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+    background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+    text-decoration: none;
+}
+
+.InterestContainer {
+    width: 50vw;
+    max-height: 70vh;
+    display: none;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.cent {
+    text-align: center;
+}
+
+.userInput {
+    margin-left: 25%;
+    height: 30px;
+    width: 400px;
+}
+
+.intersets {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.explore,
+.discard {
+    box-sizing: border-box;
+    margin-top: 30px;
+    -webkit-border-radius: 28;
+    -moz-border-radius: 28;
+    border-radius: 28px;
+    font-family: Arial;
+    font-size: 20px;
+    border: none;
+    /* color: #ffffff; */
+    /* background: #FF0000; */
+    color: black;
+    background: #84de72;
+    padding: 10px 20px 10px 20px;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.explore:hover {
+    color: white;
+    background: rgb(67, 218, 67);
+
+    cursor: pointer;
+    /* background: #f07676; */
+    text-decoration: none;
+}
+
+.discard {
+    background-color: rgb(236, 84, 84);
+}
+
+.discard:hover {
+    background: rgb(234, 97, 38);
+
+}
+
+.updateProfContainer {
+    width: 100vw;
+    height: 100vh;
+    /* background-color: rgb(104, 51, 51); */
+
+}
+
+.popup {
+    padding: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    animation: fadeIn 0.6s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.popup.close {
+    animation: fadeOut 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+    }
+}

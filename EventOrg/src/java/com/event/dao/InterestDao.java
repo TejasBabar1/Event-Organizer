@@ -101,6 +101,35 @@ public class InterestDao {
         return interest;
     }
     
+    public List<Interest> getInterestsById(int id) {
+    List<Interest> interests = new ArrayList<>();
+
+    try {
+        String query = "SELECT * FROM Interest WHERE id = ?";
+        PreparedStatement pstmt = con.prepareStatement(query);
+        pstmt.setInt(1, id);
+
+        ResultSet rs = pstmt.executeQuery();
+
+        while (rs.next()) {
+            Interest interest = new Interest();
+            interest.setId(rs.getInt("id"));
+            interest.setInterest_name(rs.getString("interest_name"));
+            interests.add(interest);
+        }
+
+        // Close resources
+        rs.close();
+        pstmt.close();
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return interests;
+}
+
+    
     public int getIdByInterest(String interestName) {
         int interestId = -1;
 

@@ -292,6 +292,10 @@
                 </footer>
             </div> 
         </div>
+                         
+                            
+                    
+        
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
         <!-- Include Bootstrap JS -->
@@ -304,6 +308,13 @@
         <script src="vendors/owl-carousel/js/owl.carousel.min.js"></script>
         <script src="vendors/aos/js/aos.js"></script>
         <script src="js/landingpage.js"></script>
+        
+        
+        <script>
+            document.getElementById("RSdate").addEventListener('change',function(){
+                document.getElementById("REdate").min=this.value;
+            })
+        </script>
 
 
     </body>
