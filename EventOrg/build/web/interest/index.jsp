@@ -200,11 +200,10 @@
                             <input type="button" class="interestBtn" value="Quantum Computing">
                             <input type="button" class="interestBtn" value="Robotics">
                             <input type="button" class="interestBtn" value="Internet Of things (IOT)">
-                            <input type="button" class="interestBtn" value="Electric vechicles">
+                            <input type="button" class="interestBtn" value="Electric Vehicles">
                             <input type="button" class="interestBtn" value="Sports">
                             <input type="button" class="interestBtn" value="Gaming and Entertainment">
                             <input type="button" class="interestBtn" value="Art & Drama">
-                            <input type="button" class="interestBtn" value="Electric vechicles">
                             <input type="button" class="interestBtn" value="Social and Networking">
                             <input type="button" class="interestBtn" value="Marketing">
                             <input type="button" class="interestBtn" value="Finance">
