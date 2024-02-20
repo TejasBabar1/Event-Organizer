@@ -52,13 +52,17 @@ public class PostEvent extends HttpServlet {
             String resEndDate = request.getParameter("registrationEndDate");
             String description = request.getParameter("eventDescription");
             
-            Event e=new Event(eName,eDate,location,sTime,speaker,resStDate,resEndDate,description);
-                
+            HttpSession session = request.getSession();
+            Admin admin = (Admin) session.getAttribute("admin");
+            int adminid = admin.getId();
+            
+            Event e=new Event(adminid,eName,eDate,location,sTime,speaker,resStDate,resEndDate,description);
+              
                 // create userdao object
                 EventDao dao=new EventDao(ConnectionProvider.getConnection());
                 int id=dao.saveEventAndGetId(e);
                 if(id!=-1){
-                    HttpSession session = request.getSession();
+//                    HttpSession session = request.getSession();
                     Event ev = dao.getEventByEventId(id);
                     session.setAttribute("event", ev);
                     out.println("Done");

@@ -107,10 +107,6 @@
                  for(int id1 : interestIds1){
                  javaList.add(interestDao1.getInterestById(id1));
                }
-             
-            
-
-         
         %>
         <div class="InterestContainer">
 
@@ -221,9 +217,14 @@
                                 EventInterestMappingDao eventInterestMappingDao = new EventInterestMappingDao(ConnectionProvider.getConnection());
 
                                 // Retrieve the event IDs for the given interest IDs
-                                List<Integer> eventIds = eventInterestMappingDao.getEventIdsByInterestIds(interestIds);
-
-
+                                List<Integer> eids = eventInterestMappingDao.getEventIdsByInterestIds(interestIds);
+                                HashSet<Integer> set = new HashSet<>();
+                                
+                                for(int z : eids) set.add(z);
+                                List<Integer> eventIds = new ArrayList<>();
+                                for(int z : set){
+                                    eventIds.add(z);
+                                }
                                 EventDao eventdao=new EventDao(ConnectionProvider.getConnection());
                                 List<Event> events=eventdao.getEventsByEventIds(eventIds);
                     
@@ -273,7 +274,7 @@
                     </div>
                 </section>
                 <!-- new code ends -->
-            </div>  
+            <!--</div>-->  
 
 
 
@@ -454,6 +455,7 @@
             <footer class="border-top">
                 <p class="text-center text-muted pt-4">Copyright © 2023<a href="#" class="px-1">EventMinds</a>All rights reserved.</p>
             </footer>
+           </div>
         </div>
 
         <script src="vendors/jquery/jquery.min.js"></script>

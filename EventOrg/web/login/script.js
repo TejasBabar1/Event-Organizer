@@ -127,7 +127,7 @@ $(document).ready(function () {
                 else{
                     swal(data);
                     console.log(data.trim());
-                    console.log("Akash");
+                    
                 }
 
 

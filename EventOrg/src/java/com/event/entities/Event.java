@@ -4,6 +4,7 @@ package com.event.entities;
 
 public class Event {
     private int id;
+    private int admin_id;
     private String event_name;
     private String event_date;
     private String location;
@@ -18,8 +19,9 @@ public class Event {
     public Event() {
     }
 
-    public Event(int id, String event_name, String event_date, String location, String time, String speaker, String registration_start_date, String registration_end_date, String description) {
+    public Event(int id, int admin_id,String event_name, String event_date, String location, String time, String speaker, String registration_start_date, String registration_end_date, String description) {
         this.id = id;
+        this.admin_id=admin_id;
         this.event_name = event_name;
         this.event_date = event_date;
         this.location = location;
@@ -32,7 +34,8 @@ public class Event {
         
     }
 
-    public Event(String event_name, String event_date, String location, String time, String speaker, String registration_start_date, String registration_end_date, String description) {
+    public Event(int admin_id,String event_name, String event_date, String location, String time, String speaker, String registration_start_date, String registration_end_date, String description) {
+        this.admin_id=admin_id;
         this.event_name = event_name;
         this.event_date = event_date;
         this.location = location;
@@ -49,6 +52,14 @@ public class Event {
 
     public void setId(int id) {
         this.id = id;
+    }
+    
+    public int getAdmin_id() {
+        return admin_id;
+    }
+
+    public void setAdmin_id(int admin_id) {
+        this.admin_id = admin_id;
     }
 
     public String getEvent_name() {
